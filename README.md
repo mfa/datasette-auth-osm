@@ -1,7 +1,6 @@
 # datasette-auth-osm
 
 [![PyPI](https://img.shields.io/pypi/v/datasette-auth-osm.svg)](https://pypi.org/project/datasette-auth-osm/)
-[![Changelog](https://img.shields.io/github/v/release/mfa/datasette-auth-osm?include_prereleases&label=changelog)](https://github.com/mfa/datasette-auth-osm/releases)
 [![Tests](https://github.com/mfa/datasette-auth-osm/workflows/Test/badge.svg)](https://github.com/mfa/datasette-auth-osm/actions?query=workflow%3ATest)
 [![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)](https://github.com/mfa/datasette-auth-osm/blob/main/LICENSE)
 
@@ -19,9 +18,8 @@ You can try this out at [datasette-auth-osm.madflex.de](https://datasette-auth-o
 
 ## Initial configuration
 
-First, create a new application in Auth0. You will need the domain, client ID and client secret for that application.
-
-The domain should be something like `mysite.us.auth0.com`.
+First, create a new application in [Openstreetmap - OAuth2 Applications](https://www.openstreetmap.org/oauth2/applications).
+You will need the client ID and client secret for that application.
 
 Add `http://127.0.0.1:8001/-/auth0-callback` to the list of Allowed Callback URLs.
 
@@ -29,11 +27,11 @@ Then configure these plugin secrets using `metadata.yml`:
 
 ```yaml
 plugins:
-  datasette-auth0:
+  datasette-auth-osm:
     client_id:
-      "$env": AUTH0_CLIENT_ID
+      "$env": OSM_CLIENT_ID
     client_secret:
-      "$env": AUTH0_CLIENT_SECRET
+      "$env": OSM_CLIENT_SECRET
 ```
 
 In development, you can run Datasette and pass in environment variables like this:
@@ -51,7 +49,7 @@ datasette publish cloudrun mydatabase.db \
 --plugin-secret datasette-auth-osm client_secret "your-client-secret" \
 --service datasette-auth-osm-demo
 ```
-Once your Datasette instance is deployed, you will need to add its callback URL to the "Allowed Callback URLs" list your [Oauth2 application](https://www.openstreetmap.org/oauth2/applications) in OpenStreetMap.
+Once your Datasette instance is deployed, you will need to add its callback URL to the "Allowed Callback URLs" list your [OAuth2 application](https://www.openstreetmap.org/oauth2/applications) in OpenStreetMap.
 
 The callback URL should be something like:
 
