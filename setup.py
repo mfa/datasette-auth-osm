@@ -22,7 +22,6 @@ setup(
     project_urls={
         "Issues": "https://github.com/mfa/datasette-auth-osm/issues",
         "CI": "https://github.com/mfa/datasette-auth-osm/actions",
-        "Changelog": "https://github.com/mfa/datasette-auth-osm/releases",
     },
     license="Apache License, Version 2.0",
     classifiers=[
@@ -32,7 +31,7 @@ setup(
     version=VERSION,
     packages=["datasette_auth_osm"],
     entry_points={"datasette": ["auth_osm = datasette_auth_osm"]},
-    install_requires=["datasette"],
-    extras_require={"test": ["pytest", "pytest-asyncio"]},
+    install_requires=["datasette", "python-baseconv"],
+    extras_require={"test": ["pytest", "pytest-asyncio", "pytest-httpx"]},
     python_requires=">=3.7",
 )
