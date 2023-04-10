@@ -21,7 +21,7 @@ You can try this out at [datasette-auth-osm.madflex.de](https://datasette-auth-o
 First, create a new application in [Openstreetmap - OAuth2 Applications](https://www.openstreetmap.org/oauth2/applications).
 You will need the client ID and client secret for that application.
 
-Add `http://127.0.0.1:8001/-/auth0-callback` to the list of Allowed Callback URLs.
+Add `http://127.0.0.1:8001/-/osm-callback` to the list of Allowed Callback URLs.
 
 Then configure these plugin secrets using `metadata.yml`:
 
