@@ -1,6 +1,6 @@
 ## demo setup
 
-This is the exact setup of <datasette-auth-osm.madflex.de>
+This is the exact setup of https://datasette-auth-osm.madflex.de
 
 ### run
 
