@@ -1,0 +1,12 @@
+---
+title: OSM Auth Demo
+plugins:
+  datasette-auth-osm:
+    client_id:
+      "$env": OSM_CLIENT_ID
+    client_secret:
+      "$env": OSM_CLIENT_SECRET
+  datasette-block-robots:
+    literal: |-
+      User-agent: *
+      Disallow: /
