@@ -6,7 +6,7 @@ This is the exact setup of https://datasette-auth-osm.madflex.de
 
 ```
 touch empty.db
-datasette publish cloudrun empty.db \
+datasette publish cloudrun empty.db -m metadata.yml \
 --install datasette-auth-osm \
 --install datasette-block-robots \
 --plugin-secret datasette-auth-osm client_id "your-client-id" \
