@@ -14,7 +14,7 @@ Install this plugin in the same environment as Datasette.
 
 ## Demo
 
-You can try this out at [datasette-auth-osm.madflex.de](https://datasette-auth-osm.madflex.de/) - click on the top right menu icon and select "Sign in with OpenStreetMap".
+You can try this out at [datasette-auth-osm-demo.fly.dev](https://datasette-auth-osm-demo.fly.dev/) - click on the top right menu icon and select "Sign in with OpenStreetMap".
 
 ## Initial configuration
 
@@ -41,19 +41,20 @@ OSM_CLIENT_SECRET="...secret-goes-here..." \
 datasette -m metadata.yml
 ```
 
-If you are deploying using `datasette publish` you can pass these using `--plugin-secret`. For example, to deploy using Cloud Run you might run the following:
-```
-datasette publish cloudrun mydatabase.db \
---install datasette-auth-osm \
---plugin-secret datasette-auth-osm client_id "your-client-id" \
---plugin-secret datasette-auth-osm client_secret "your-client-secret" \
---service datasette-auth-osm-demo
-```
 Once your Datasette instance is deployed, you will need to add its callback URL to the "Allowed Callback URLs" list your [OAuth2 application](https://www.openstreetmap.org/oauth2/applications) in OpenStreetMap.
 
 The callback URL should be something like:
 
     https://url-to-your-datasette/-/osm-callback
+
+Example for a permission block to only allow logged in users to see the private.db:
+``` yaml
+databases:
+  private:
+    allow:
+      osm_id: "*"
+```
+The name of the actor field is not ``id`` as in the Datasette documentation, but ``osm_id``.
 
 
 ## Development
