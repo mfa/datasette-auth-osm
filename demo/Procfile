@@ -1,0 +1,1 @@
+web: datasette -p 8000 -h "" private.db -m metadata.yml --setting force_https_urls 1

@@ -1,5 +1,7 @@
 ---
 title: OSM Auth Demo
+description: |
+  Demo login with OpenStreetmap. Sign in with top right navbar.
 plugins:
   datasette-auth-osm:
     client_id:
@@ -10,3 +12,7 @@ plugins:
     literal: |-
       User-agent: *
       Disallow: /
+databases:
+  private:
+    allow:
+      osm_id: "*"

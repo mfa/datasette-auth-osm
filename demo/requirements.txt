@@ -1,0 +1,3 @@
+datasette==0.65.1
+datasette-block-robots
+datasette-auth-osm==0.2
