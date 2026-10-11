@@ -1,7 +1,7 @@
 from setuptools import setup
 import os
 
-VERSION = "0.2"
+VERSION = "0.3"
 
 
 def get_long_description():
@@ -31,7 +31,7 @@ setup(
     version=VERSION,
     packages=["datasette_auth_osm"],
     entry_points={"datasette": ["auth_osm = datasette_auth_osm"]},
-    install_requires=["datasette", "python-baseconv"],
+    install_requires=["datasette", "httpx", "python-baseconv"],
     extras_require={"test": ["pytest", "pytest-asyncio", "pytest-httpx"]},
     python_requires=">=3.12",
 )
