@@ -9,12 +9,13 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
-        python-version: ["3.7", "3.8", "3.9", "3.10", "3.11"]
+        python-version: ["3.12", "3.13", "3.14", "3.15"]
+        datasette-version: ["<1.0", ">=1.0a0"]
     steps:
     - uses: actions/checkout@v3
     - name: Set up Python ${{ matrix.python-version }}
       if: hashFiles('setup.py')
-      uses: actions/setup-python@v2
+      uses: actions/setup-python@v5
       with:
         python-version: ${{ matrix.python-version }}
         cache: pip
@@ -23,6 +24,7 @@ jobs:
       if: hashFiles('setup.py')
       run: |
         pip install -e '.[test]'
+        pip install --pre "datasette${{ matrix.datasette-version }}"
     - name: Run tests
       if: hashFiles('setup.py')
       run: |

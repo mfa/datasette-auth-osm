@@ -33,5 +33,5 @@ setup(
     entry_points={"datasette": ["auth_osm = datasette_auth_osm"]},
     install_requires=["datasette", "python-baseconv"],
     extras_require={"test": ["pytest", "pytest-asyncio", "pytest-httpx"]},
-    python_requires=">=3.7",
+    python_requires=">=3.12",
 )

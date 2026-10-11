@@ -1,4 +1,5 @@
 import base64
+import inspect
 import urllib
 
 import pytest
@@ -22,18 +23,18 @@ def non_mocked_hosts():
 
 @pytest.fixture
 def datasette():
-    return Datasette(
-        [],
-        memory=True,
-        metadata={
-            "plugins": {
-                "datasette-auth-osm": {
-                    "client_id": "CLIENT_ID",
-                    "client_secret": "CLIENT_SECRET",
-                }
+    plugins = {
+        "plugins": {
+            "datasette-auth-osm": {
+                "client_id": "CLIENT_ID",
+                "client_secret": "CLIENT_SECRET",
             }
-        },
-    )
+        }
+    }
+    # Datasette 1.0 moved plugin settings from metadata to config
+    if "config" in inspect.signature(Datasette).parameters:
+        return Datasette([], memory=True, config=plugins)
+    return Datasette([], memory=True, metadata=plugins)
 
 
 @pytest.mark.asyncio
